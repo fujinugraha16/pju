@@ -8,13 +8,13 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item mr-2">
-                    <a class="nav-link" href="/">Beranda</a>
+                    <a class="nav-link" href="{{route('index')}}">Beranda</a>
                 </li>
                 <li class="nav-item mr-2">
-                    <a class="nav-link" href="/sudah-diperbaiki">Sudah Diperbaiki</a>
+                    <a class="nav-link" href="{{route('sudahDiperbaiki')}}">Sudah Diperbaiki</a>
                 </li>
                 <li class="nav-item mr-2">
-                    <a class="nav-link" href="/belum-diperbaiki">Belum Diperbaiki</a>
+                    <a class="nav-link" href="{{route('belumDiperbaiki')}}">Belum Diperbaiki</a>
                 </li>
             </ul>
         </div>

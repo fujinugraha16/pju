@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'DataPJUController@index');
-Route::get('/sudah-diperbaiki', 'DataPJUController@sudahDiperbaiki');
-Route::get('/belum-diperbaiki', 'DataPJUController@belumDiperbaiki');
+Route::get('/', 'DataPJUController@index')->name('index');
+Route::get('/sudah-diperbaiki', 'DataPJUController@sudahDiperbaiki')->name('sudahDiperbaiki');
+Route::get('/belum-diperbaiki', 'DataPJUController@belumDiperbaiki')->name('belumDiperbaiki');
+Route::post('/tambah-data', 'DataPJUController@tambahData')->name('tambahData');
+Route::post('/edit-data/{id}', 'DataPJUController@editData')->name('editData');
+Route::post('/hapus-data', 'DataPJUController@hapusData')->name('hapusData');

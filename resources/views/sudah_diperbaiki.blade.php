@@ -53,40 +53,30 @@
                 </tr>
             </thead>
             <tbody>
+                @php $i = 1 @endphp
+                @foreach ($dataPJUs as $pju)
                 <tr>
-                    <th scope="row">1</th>
-                    <td>12-Nov-2020</td>
-                    <td>022/VII/Ds-Tjs</td>
-                    <td>Gunung Tanjung</td>
-                    <td>Tanjung Sari</td>
-                    <td>Kp. Lengkong RT 004 (Dpn Kantor Desa Tanjungsari) </td>
-                    <td>P001</td>
-                    <td>081234567890</td>
-                    <td>Padam</td>
+                    <th scope="row">{{ $i++ }}</th>
+                    <td>{{ $pju['tgl_masuk'] }}</td>
+                    <td>{{ $pju['no_surat'] }}</td>
+                    <td>{{ $pju['kecamatan'] }}</td>
+                    <td>{{ $pju['desa'] }}</td>
+                    <td>{{ $pju['alamat'] }}</td>
+                    <td>{{ $pju['id_pelanggan'] }}</td>
+                    <td>{{ $pju['no_kontak'] }}</td>
+                    <td>{{ $pju['ket_kerusakan'] }}</td>
                     <td>
                         <span class="badge badge-success">Sudah</span>
                     </td>
-                    <td>22-Nov-2020</td>
-                    <td>Ridwan</td>
+                    <td>{{ $pju['tgl_pemeliharaan'] }}</td>
+                    <td>{{ $pju['pelaksana'] }}</td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>12-Nov-2020</td>
-                    <td>022/VII/Ds-Tjs</td>
-                    <td>Gunung Tanjung</td>
-                    <td>Tanjung Sari</td>
-                    <td>Kp. Lengkong RT 004 (Dpn Kantor Desa Tanjungsari) </td>
-                    <td>P001</td>
-                    <td>081234567890</td>
-                    <td>Padam</td>
-                    <td>
-                        <span class="badge badge-success">Sudah</span>
-                    </td>
-                    <td>22-Nov-2020</td>
-                    <td>Ridwan</td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
+        <div class="float-right mt-3">
+            {{ $dataPJUs->links() }}
+        </div>
     </div>
 
 
