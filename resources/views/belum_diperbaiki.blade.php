@@ -81,7 +81,7 @@
 
 
     <!-- Modal -->
-    @include('modals/modalCetak')
+    @include('modals/modalCetak', ['cetakMode'=>'belum'])
 
     @include('assets/script')
 </body>

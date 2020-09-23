@@ -7,7 +7,9 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form class="form" method="post">
+            <form class="form" action="{{ route('export') }}" method="post">
+                @csrf
+                <input type="hidden" value="{{ $cetakMode }}" name="cetakMode">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col">
@@ -27,6 +29,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                     <button type="submit" class="btn btn-success">Cetak</button>
+                    {{-- <a href="{{ route('export') }}" class="btn btn-success">Cetak</a> --}}
                 </div>
             </form>
         </div>

@@ -13,7 +13,7 @@
                 @csrf
                 <div class="modal-body">
                     Apakah anda yakin untuk mengganti status data ini menjadi
-                    <b>{{$pju['ket_sdh_blm'] === 1 ? 'Belum' : 'Sudah' }}</b>?
+                    <b>{{$pju['ket_sdh_blm'] === 'Sudah' ? 'Belum' : 'Sudah' }}</b>?
                     <input type="hidden" value="{{ $pju["id"] }}" name="id">
                     <input type="hidden" value="{{ $pju["ket_sdh_blm"] }}" name="status">
                 </div>
