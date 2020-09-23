@@ -22,20 +22,15 @@
         <div class="row justify-content-between">
             <div class="col-6">
                 <button type="button" class="btn btn-success mb-2 mr-2" data-toggle="modal" data-target="#modalCetak">
-                    Cetak Data
+                    <x-svg icon="print" />Cetak Data
                 </button>
             </div>
-            <div class="col-3">
-                <div class="input-group">
-                    <input type="text" class="form-control" aria-describedby="button-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="button" id="button-addon2">Cari</button>
-                    </div>
-                </div>
+            <div class="col-4">
+                <x-search-box route="{{route('belumDiperbaiki')}}" />
             </div>
         </div>
 
-        <table class="table">
+        <table class="table table-striped">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">No</th>
@@ -74,6 +69,11 @@
                 @endforeach
             </tbody>
         </table>
+
+        @if (!$dataPJUs->count())
+        Data tidak ditemukan atau Data tidak ada
+        @endif
+
         <div class="float-right mt-3">
             {{ $dataPJUs->links() }}
         </div>

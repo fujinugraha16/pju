@@ -7,9 +7,14 @@ use Illuminate\Http\Request;
 
 class DataPJUController extends Controller
 {
-    public function index()
+    public function index(Request $req)
     {
-        $dataPJUs = DataPJU::paginate(10);
+        $dataPJUs = DataPJU::orderBy('tgl_masuk', 'ASC')->paginate(10);
+
+        if (isset($req->search)) {
+            $dataPJUs = DataPJU::where($req->column, 'LIKE', "%$req->search%")->orderBy('tgl_masuk', 'ASC')->paginate(10);
+        }
+
         return view('index', compact('dataPJUs'));
     }
 
@@ -33,15 +38,39 @@ class DataPJUController extends Controller
         return redirect('/')->with('Success', 'Data berhasil dihapus');
     }
 
-    public function sudahDiperbaiki()
+    public function updateStatusData(Request $req)
     {
-        $dataPJUs = DataPJU::where('ket_sdh_blm', 1)->paginate(10);
+        $dataPJU = DataPJU::find($req->id);
+
+        if ($req->status == 1) {
+            $dataPJU->ket_sdh_blm = 0;
+        } elseif ($req->status == 0) {
+            $dataPJU->ket_sdh_blm = 1;
+        }
+
+        $dataPJU->save();
+        return redirect('/')->with('Success', 'Status data berhasil diupdate');
+    }
+
+    public function sudahDiperbaiki(Request $req)
+    {
+        $dataPJUs = DataPJU::where('ket_sdh_blm', 1)->orderBy('tgl_masuk', 'ASC')->paginate(10);
+
+        if (isset($req->search)) {
+            $dataPJUs = DataPJU::where('ket_sdh_blm', 1)->where($req->column, 'LIKE', "%$req->search%")->orderBy('tgl_masuk', 'ASC')->paginate(10);
+        }
+
         return view('sudah_diperbaiki', compact('dataPJUs'));
     }
 
-    public function belumDiperbaiki()
+    public function belumDiperbaiki(Request $req)
     {
-        $dataPJUs = DataPJU::where('ket_sdh_blm', 0)->paginate(10);
+        $dataPJUs = DataPJU::where('ket_sdh_blm', 0)->orderBy('tgl_masuk', 'ASC')->paginate(10);
+
+        if (isset($req->search)) {
+            $dataPJUs = DataPJU::where('ket_sdh_blm', 0)->where($req->column, 'LIKE', "%$req->search%")->orderBy('tgl_masuk', 'ASC')->paginate(10);
+        }
+
         return view('belum_diperbaiki', compact('dataPJUs'));
     }
 }

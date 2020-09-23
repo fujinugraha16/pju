@@ -14,31 +14,29 @@
 
     <div class="my-container">
         <h3 class="my-3 text-center">
-            Data Pengajuan Perbaikan/Pemeliharaan PJU
+            Data Pengajuan Pemeliharaan PJU
         </h3>
 
+        @if(session("Success"))
+        <x-alert type="success" title="{{session('Success')}}" />
+        @endif
 
         <!-- Button trigger modal -->
         <div class="row justify-content-between">
             <div class="col-6">
                 <button type="button" class="btn btn-primary mb-2 mr-2" data-toggle="modal" data-target="#modalTambah">
-                    Tambah Data
+                    <x-svg icon="plus" />Tambah Data
                 </button>
                 <button type="button" class="btn btn-success mb-2 mr-2" data-toggle="modal" data-target="#modalCetak">
-                    Cetak Data
+                    <x-svg icon="print" />Cetak Data
                 </button>
             </div>
-            <div class="col-3">
-                <div class="input-group">
-                    <input type="text" class="form-control" aria-describedby="button-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="button" id="button-addon2">Cari</button>
-                    </div>
-                </div>
+            <div class="col-4">
+                <x-search-box route="{{route('index')}}" />
             </div>
         </div>
 
-        <table class="table">
+        <table class="table table-striped">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">No</th>
@@ -73,6 +71,9 @@
                         <span
                             class="badge badge-{{$pju['ket_sdh_blm'] === 1 ? 'success' : 'warning' }}">{{ $pju['ket_sdh_blm'] === 1 ? 'Sudah' : 'Belum'}}
                         </span>
+                        <a href="#" class="text-dark" data-toggle="modal" data-target="#modalStatus{{ $pju["id"] }}">
+                            <x-svg icon="pen" />
+                        </a>
                     </td>
                     <td>{{$pju['tgl_pemeliharaan']}}</td>
                     <td>{{$pju['pelaksana']}}</td>
@@ -88,9 +89,15 @@
 
                 @include('modals/modalEdit')
                 @include('modals/modalHapus')
+                @include('modals/modalStatus')
                 @endforeach
             </tbody>
         </table>
+
+        @if (!$dataPJUs->count())
+        Data tidak ditemukan atau Data tidak ada
+        @endif
+
         <div class="float-right mt-3">
             {{ $dataPJUs->links() }}
         </div>

@@ -19,3 +19,4 @@ Route::get('/belum-diperbaiki', 'DataPJUController@belumDiperbaiki')->name('belu
 Route::post('/tambah-data', 'DataPJUController@tambahData')->name('tambahData');
 Route::post('/edit-data/{id}', 'DataPJUController@editData')->name('editData');
 Route::post('/hapus-data', 'DataPJUController@hapusData')->name('hapusData');
+Route::post('/update-status-data', 'DataPJUController@updateStatusData')->name('updateStatusData');
